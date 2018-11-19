@@ -29,4 +29,8 @@ export class PessoaService {
   cadastrar(pessoa) {
     return this._http.post(this.baseUrl + '/pessoa', pessoa,  this.options );
   }
+
+  atualizar(id, pessoa) {
+    return this._http.put(this.baseUrl+'/pessoa/' + id, pessoa, this.options );
+  }
 }

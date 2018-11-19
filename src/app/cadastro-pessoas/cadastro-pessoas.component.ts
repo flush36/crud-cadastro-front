@@ -24,10 +24,11 @@ export class CadastroPessoasComponent implements OnInit {
   btn: boolean = false;
   bb: boolean = true;
   titulo:String = 'Cadastro de Pessoa';
+  id : number;
 
   ngOnInit() {
-   const id = this.activated.snapshot.params['id'];
-   this.verificarAtualizar(id);
+   this.id = this.activated.snapshot.params['id'];
+   this.verificarAtualizar(this.id);
    this.pessoa = new Pessoa();
    this.telefone = new Telefone();
   }
@@ -47,6 +48,7 @@ export class CadastroPessoasComponent implements OnInit {
   buscarPorId(id) {
     this.service.buscarPorId(id).subscribe(pessoa => {
       this.pessoa = pessoa.json();
+      this.telefones = this.pessoa.telefones;
     }, error => {
       console.log(error)
     });
@@ -68,7 +70,16 @@ export class CadastroPessoasComponent implements OnInit {
       this.error = false;
     }, error => {
       this.error = true;
-      console.log(error);
+    })
+  }
+
+  atualizar() {
+    this.pessoa.telefones = this.telefones;
+    this.service.atualizar(this.id, this.pessoa).subscribe(() => {
+      this.pessoa = new Pessoa();
+      this.error = false;
+    }, error => {
+      this.error = true;
     })
   }
 
