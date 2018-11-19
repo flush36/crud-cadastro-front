@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+      <div class="row">
+          <div class="col s10 m8 l8">
+              <h6>Cadastro de Pessoas</h6>
+          </div>
+      </div>
+    <div class="col l4">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" class="validate">
+    </div>
+    <div class="col l4">
+        <label for="cpf">CPF:</label>
+        <input id="cpf" type="text" class="validate">
+    </div>
+  </div>
+  <div class="row">
+      <div class="col l4">
+          <label for="email">Email</label>
+          <input id="email" type="email" class="validate">
+          <span class="helper-text" data-success="E-mail valido" data-error="E-mail invalido"></span>
+      </div>
+      <div class="col l4">
+          <label for="data">Data de nascimento:</label>
+          <input id="data" type="date" class="datepicker" required=true>
+      </div>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>DDD</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{pessoa.id}}</td>
+            <td>{{pessoa.ddd}}</td>
+            <td>{{pessoa.telefone}}</td>
+            <td>Deletar</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
