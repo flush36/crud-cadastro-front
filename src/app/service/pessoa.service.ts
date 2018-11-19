@@ -10,6 +10,10 @@ export class PessoaService {
 
   constructor(private _http: Http) { }
 
+  buscarPorId(id) {
+    return this._http.get(this.baseUrl+'/pessoa/'+id, this.options)
+  }
+
   getPessoas(){
     return this._http.get(this.baseUrl+'/pessoa', this.options);
   }
