@@ -19,7 +19,10 @@ export class PessoaService {
   }
 
   deletar(id) {
-    console.log(this.baseUrl + '/pessoa/' + id)
     return this._http.delete(this.baseUrl + '/pessoa/' + id, this.options);
+  }
+
+  cadastrar(pessoa) {
+    return this._http.post(this.baseUrl + '/pessoa', pessoa,  this.options );
   }
 }
