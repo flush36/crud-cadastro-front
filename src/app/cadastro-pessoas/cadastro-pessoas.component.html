@@ -1,29 +1,54 @@
 <div class="container">
+    <div class="row">
+        <div class="col 4 offset-l1p" style="position: relative; left: 50%; margin-top: 10px;">
+                <button class="btn waves-effect waves-light btn-small 
+                waves-purple blue" type="submit" (click)="inicio()">Voltar</button>  
+        </div>
+    </div>
+       
   <div class="row">
-      <div class="row">
-          <div class="col s10 m8 l8">
-              <h6>Cadastro de Pessoas</h6>
-          </div>
+      <div class="col l8" *ngIf="error">
+            <div class="msg msg-error z-depth-3 scale-transition">Ocorreu um erro, verifique a integridade dos dados.</div>
       </div>
+  </div>
+  <div class="row">
+        <div class="col s10 m8 l8">
+            <h6>{{titulo}}</h6>
+        </div>
+    </div>
+  <div class="row">
     <div class="col l4">
         <label for="nome">Nome:</label>
-        <input id="nome" type="text" class="validate">
+        <input id="nome" type="text"  maxlength="40" placeholder="Digite seu nome"  [(ngModel)]="pessoa.nome" class="validate" >
     </div>
     <div class="col l4">
         <label for="cpf">CPF:</label>
-        <input id="cpf" type="text" class="validate">
+        <input id="cpf" maxlength="11" placeholder="Digite seu cpf"  [(ngModel)]="pessoa.cpf" type="text" class="validate">
     </div>
   </div>
   <div class="row">
       <div class="col l4">
           <label for="email">Email</label>
-          <input id="email" type="email" class="validate">
-          <span class="helper-text" data-success="E-mail valido" data-error="E-mail invalido"></span>
+          <input id="email"  maxlength="50" placeholder="Digite seu e-mail"  [(ngModel)]="pessoa.email" type="email" class="validate">
       </div>
       <div class="col l4">
           <label for="data">Data de nascimento:</label>
-          <input id="data" type="date" class="datepicker" required=true>
+          <input id="data" [(ngModel)]="pessoa.dataNascimento" type="date" class="datepicker" required=true>
       </div>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col l2">
+            <label for="ddd">DDD:</label>
+            <input id="ddd" [(ngModel)]="telefone.ddd"  maxlength="2"  type="text" required=true>
+    </div>
+    <div class="col l4">
+            <label for="numero">Telefone:</label>
+            <input id="numero" [(ngModel)]="telefone.numero"  maxlength="9" type="text" required=true>
+    </div>
+    <div class="col l3">
+        <button class="btn waves-effect waves-light btn-small
+          waves-purple blue" [disabled]="verificaIntegridadeTelefone()"
+           type="submit" (click)="salvarNaLista()">Adicionar</button>   
   </div>
   <div class="row" style="margin-top: 40px;">
       <table>
@@ -35,14 +60,29 @@
             <th>Ações</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>{{pessoa.id}}</td>
-            <td>{{pessoa.ddd}}</td>
-            <td>{{pessoa.telefone}}</td>
-            <td>Deletar</td>
+        <tbody *ngIf="telefones.length != 0">
+          <tr *ngFor="let telefone of telefones; let i = index;">
+            <td>{{telefone.id}}</td>
+            <td>{{telefone.ddd}}</td>
+            <td>{{telefone.numero}}</td>
+            <td (click)="deletarDaLista(i)"><a>Deletar</a></td>
           </tr>
         </tbody>
       </table>
+  </div>
+  <div class="row">
+      <div class="col l3" style="margin-top: 50px;" *ngIf="btn == false">
+            <button class="btn waves-effect waves-light btn-small 
+            waves-purple blue" type="submit" (click)="cadastrar()" 
+            [disabled]="verificaIntegridadePessoa()"
+            >Cadastrar</button>       
+      </div>
+  </div>
+  <div class="row">
+       <div class="col l3" style="margin-top: 50px;" *ngIf="btn == true">
+            <button class="btn waves-effect waves-light btn-small 
+            waves-purple blue" type="submit" (click)="atualizar()" 
+            [disabled]="verificaIntegridadePessoa()">Editar</button>
+    </div>
   </div>
 </div>

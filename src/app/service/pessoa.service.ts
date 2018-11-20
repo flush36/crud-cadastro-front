@@ -10,6 +10,10 @@ export class PessoaService {
 
   constructor(private _http: Http) { }
 
+  buscarPorId(id) {
+    return this._http.get(this.baseUrl+'/pessoa/'+id, this.options)
+  }
+
   getPessoas(){
     return this._http.get(this.baseUrl+'/pessoa', this.options);
   }
@@ -19,7 +23,14 @@ export class PessoaService {
   }
 
   deletar(id) {
-    console.log(this.baseUrl + '/pessoa/' + id)
     return this._http.delete(this.baseUrl + '/pessoa/' + id, this.options);
+  }
+
+  cadastrar(pessoa) {
+    return this._http.post(this.baseUrl + '/pessoa', pessoa,  this.options );
+  }
+
+  atualizar(id, pessoa) {
+    return this._http.put(this.baseUrl+'/pessoa/' + id, pessoa, this.options );
   }
 }

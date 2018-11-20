@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../service/pessoa.service';
+import { Pessoa } from '../models/pessoa';
 
 @Component({
   selector: 'app-listagem-pessoas',
@@ -10,10 +11,11 @@ export class ListagemPessoasComponent implements OnInit {
 
   constructor(private service: PessoaService) { }
   
-  pessoa = {};
+  pessoa : Pessoa;
   pessoas: any = [];
   deleteId = {id : 0}
   ngOnInit() {
+    this.pessoa = new Pessoa();
     this.getPessoas();
   }
 

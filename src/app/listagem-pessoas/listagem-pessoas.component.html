@@ -26,7 +26,7 @@
         </div>
         <div class="col m2 l2">
                 <button class="btn waves-effect waves-light
-                 btn-small waves-purple blue" type="submit">Cadastrar</button>   
+                 btn-small waves-purple blue" type="submit" routerLink="/pessoas/cadastrar">Cadastrar</button>   
         </div>    
     </div>
 </div>
@@ -65,7 +65,7 @@
                     <td>{{pessoa.cpf}}</td>
                     <td>{{pessoa.idade}}</td>
                     <td>{{pessoa.qtdTelefones}}</td>
-                    <td><a >Editar</a></td>
+                    <td><a [routerLink]="['/pessoas/atualizar', pessoa.id]">Editar</a></td>
                     <td><a  (click)="deletar(i)">Deletar</a></td>
                 </tr>
         </tbody>
