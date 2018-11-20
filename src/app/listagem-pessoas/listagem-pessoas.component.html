@@ -66,7 +66,7 @@
                     <td>{{pessoa.idade}}</td>
                     <td>{{pessoa.qtdTelefones}}</td>
                     <td><a [routerLink]="['/pessoas/atualizar', pessoa.id]">Editar</a></td>
-                    <td><a  (click)="deletar(i)">Deletar</a></td>
+                    <td><a  (click)="deletar(i)" style="cursor: pointer;">Deletar</a></td>
                 </tr>
         </tbody>
     </table>
