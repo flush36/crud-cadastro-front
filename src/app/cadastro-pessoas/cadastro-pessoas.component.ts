@@ -20,7 +20,6 @@ export class CadastroPessoasComponent implements OnInit {
   pessoa: Pessoa;
   telefone: Telefone;
   telefones = [];
-  error: boolean;
   btn: boolean = false;
   bb: boolean = true;
   titulo:String = 'Cadastro de Pessoa';
@@ -66,20 +65,18 @@ export class CadastroPessoasComponent implements OnInit {
   cadastrar() {
     this.pessoa.telefones = this.telefones;
     this.service.cadastrar(this.pessoa).subscribe(() => {
-      this.pessoa = new Pessoa();
-      this.error = false;
+     this.inicio();
     }, error => {
-      this.error = true;
+      console.log(error);
     })
   }
 
   atualizar() {
     this.pessoa.telefones = this.telefones;
     this.service.atualizar(this.id, this.pessoa).subscribe(() => {
-      this.pessoa = new Pessoa();
-      this.error = false;
+      this.inicio();
     }, error => {
-      this.error = true;
+      console.log(error);
     })
   }
 
